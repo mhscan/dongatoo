@@ -1,5 +1,5 @@
-import Register from "./pages/Register/Register";
-import Login from "./pages/Login/Login";
+import Register from "./pages/LoginRegister/Register";
+import Login from "./pages/LoginRegister/Login";
 import Home from "./pages/Home/Home";
 
 let routes = [

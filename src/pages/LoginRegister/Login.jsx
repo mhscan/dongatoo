@@ -11,7 +11,7 @@ import {
   emailValidator,
 } from "../../validators/rules";
 
-import "./Login.css";
+import "./LoginRegister.css";
 
 export default function Login() {
   const [formState, onInputHandler] = useForm(
@@ -37,7 +37,7 @@ export default function Login() {
     <>
       <section className="login-register">
         <div className="login">
-          <span className="login__title">ورود به حساب کاربری</span>
+          <span className="login__title">login </span>
 
           <form action="#" className="login-form">
             <div className="login-form__username">
