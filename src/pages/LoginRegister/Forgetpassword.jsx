@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import Button from "../../Components/Form/Button";
 import Input from "../../Components/Form/Input";
 import { useForm } from "../../hooks/useForm";
-
 import {
   requiredValidator,
   minValidator,
@@ -11,33 +10,26 @@ import {
   emailValidator,
 } from "../../validators/rules";
 
-import "./LoginRegister.css";
-
-export default function Login() {
+export default function Forgetpassword() {
   const [formState, onInputHandler] = useForm(
     {
       username: {
         value: "",
         isValid: false,
-      },
-      password: {
-        value: "",
-        isValid: false,
-      },
+      }
     },
     false
   );
 
   const userLogin = (event) => {
     event.preventDefault();
-    console.log("User Login");
+    console.log("send email ");
   };
-
   return (
     <>
       <section className="login-register">
         <div className="login">
-          <span className="login__title">login </span>
+          <span className="login__title">forget password </span>
 
           <form action="#" className="login-form">
             <div className="login-form__username">
@@ -56,21 +48,7 @@ export default function Login() {
                 onInputHandler={onInputHandler}
               />
             </div>
-            <div className="login-form__password">
-              <Input
-                element="input"
-                id="password"
-                type="password"
-                className="login-form__password-input"
-                placeholder="password"
-                validations={[
-                  requiredValidator(),
-                  minValidator(8),
-                  maxValidator(18),
-                ]}
-                onInputHandler={onInputHandler}
-              />
-            </div>
+            
             <Button
               className={`login-form__btn ${
                 formState.isFormValid
@@ -80,21 +58,12 @@ export default function Login() {
               type="submit"
               onClick={userLogin}
               disabled={!formState.isFormValid}>
-              <span className="login-form__btn-text">submit</span>
+              <span className="login-form__btn-text">send email</span>
             </Button>
           </form>
 
-          <div className="login__new-member">
-            <span className="login__new-member-text">
-              do you have account ?
-            </span>
-            <Link className="login__new-member-link" to="/register">
-              sing in
-            </Link>
-          </div>
-          <Link className="login__forget-password-link" to="/forgetpassword">
-            forget your password click here
-          </Link>
+          
+         
         </div>
       </section>
     </>
