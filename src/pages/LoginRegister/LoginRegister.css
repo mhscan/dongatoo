@@ -1,9 +1,15 @@
-
 .login-register {
   display: flex;
-  justify-content: center;background-color: #2bce56;
-}
+  justify-content: center;
 
+  background: linear-gradient(
+    0deg,
+    rgba(236, 213, 213, 1) 40%,
+    rgba(124, 219, 214, 1) 100%
+  );
+
+  height: 100vh;
+}
 
 .login {
   display: flex;
@@ -11,16 +17,21 @@
   align-items: center;
   margin: 4rem 0;
   padding: 2.5rem 2rem 5rem 2rem;
-  background-color: #f0f2f7;
-  box-shadow: 0 6px 20px rgba(168, 172, 185, 0.3);
+  background: inherit;
+
   border-radius: 5px;
   width: 50rem;
-  border-bottom: 5px solid #2bce56;
+}
+
+.login__title{
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 3rem;
 }
 
 
+
 .login__new-member {
-  background-color: #f0f2f7;
   margin: 1.5rem 0;
   border-radius: 5px;
   width: 100%;
@@ -30,16 +41,16 @@
   padding: 1.5rem 0;
 }
 .login__new-member-text {
-  color: #7b868a;
-  font-size: 1.4rem;
+  color: #7e7e7e;
+  font-size: 1rem;
 }
 .login__new-member-link {
   background-color: #c7c3c3;
-  color: #5d5c5c;
-  font-size: 1.2rem;
+  color: #7e7e7e;
+  font-size: 1rem;
   margin: 0.6rem;
   border-radius: 5px;
-  padding: 0.4rem 0.8rem;
+  padding: 0.2rem 0.4rem;
 }
 .login__new-member-link:hover {
   color: #000;
@@ -51,12 +62,12 @@
 .login-form__username-input,
 .login-form__password-input {
   width: 100%;
-  border: 1px solid #e6e6e6;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
   padding: 1.2rem 0;
   margin-top: 0.8rem;
-  border-radius: 3px;
-  font-size: 1.4rem;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  border: none;
 }
 
 .login-form__btn {
@@ -67,31 +78,28 @@
   margin-top: 0.8rem;
   display: flex;
   align-items: center;
-  
 }
 
 .login-form__btn-success {
-  background-color: #2bce56;
+  background: linear-gradient(90deg, rgba(167,236,210,1) 0%, rgba(0,219,255,1) 100%);
 }
 
 .login-form__btn-error {
-  background-color: red;
+  background-color: #aaa;
 }
-
 
 .login-form__btn-text {
   color: #fff;
   margin: 0 auto;
+  font-size: 1.4rem;
 }
 
 .login-form__password-text {
-  color: #6c757d;
-  font-size: 1.4rem;
+  color: #7e7e7e;
+  font-size: 1rem;
 }
 
-.login__forget-password-link{
-  color: #6c757d;
-  font-size: 1.4rem;
+.login__forget-password-link {
+  color: #7e7e7e;
+  font-size: 1rem;
 }
-
-

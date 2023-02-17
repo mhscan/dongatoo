@@ -1,19 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
     <>
-    <div className="home-contener"></div>
-      <h3>
-        ما امده ایم تا هزینه های شما زا مدیریت کنیم <br />و دونگ هایتان را
-        محاسبه کنیم
-      </h3>
+      <div className="home">
+        <div className="home__contener">
+        
 
-      <Link to={"/login"}>login page</Link>
+          <h1>wellcome to dongatoo</h1>
+          <h3>we ready to manege your cost and calculete your dongs</h3>
 
-      <Link to={"/register"}> register page</Link>
+          <Link className="home__link" to={"/login"}>
+            login page
+          </Link>
+
+          <Link className="home__link" to={"/register"}>
+            {" "}
+            register page
+          </Link>
+        </div>
+      </div>
     </>
   );
 }

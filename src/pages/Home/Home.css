@@ -1,11 +1,29 @@
-.home-contener {
-
-  background-color: greenyellow;
+.home {
+  background: linear-gradient(
+    0deg,
+    rgba(236, 213, 213, 1) 40%,
+    rgba(124, 219, 214, 1) 100%
+  );
+  height: 100vh;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
-.home-contener>h3 {
 
-  background-color: greenyellow;
+.home__contener {
+
   align-items: center;
+  height: 20rem;
+  width: 50rem;
+  margin: 20px;
 }
 
+.home__link {
+  margin: 1rem;
+  padding: 8px;
+  color: #fff;
+
+  background: linear-gradient(90deg, rgb(0, 115, 209) 0%, rgb(0, 140, 255) 100%);
+  border-radius: 8px;
+  
+}

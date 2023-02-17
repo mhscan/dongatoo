@@ -65,8 +65,10 @@ export default function Register() {
     <>
       <section className="login-register">
         <div className="login register-form">
+          
+
           <span className="login__title">sing in </span>
-          <span className="login__subtitle">welcome to dongatoo </span>
+          
 
           <form action="#" className="login-form">
             <div className="login-form__username">
