@@ -11,7 +11,6 @@
 }
 
 .home__contener {
-
   align-items: center;
   height: 20rem;
   width: 50rem;
@@ -23,7 +22,9 @@
   padding: 8px;
   color: #fff;
 
-  background: linear-gradient(90deg, rgb(0, 115, 209) 0%, rgb(0, 140, 255) 100%);
+  background: linear-gradient(
+    90deg,
+    rgb(53, 76, 95) 40%,
+    rgb(0, 140, 255) 100%
+  );
   border-radius: 8px;
-  
-}
