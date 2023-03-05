@@ -16,7 +16,7 @@ import "./LoginRegister.css";
 export default function Login() {
   const [formState, onInputHandler] = useForm(
     {
-      username: {
+      email: {
         value: "",
         isValid: false,
       },
@@ -30,7 +30,23 @@ export default function Login() {
 
   const userLogin = (event) => {
     event.preventDefault();
-    console.log("User Login");
+
+    const loginuser = {
+      email: formState.inputs.email.value,
+      password: formState.inputs.password.value,
+    };
+
+    fetch(`https://dongato-server.bavand.top/api/user/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginuser),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result.status);
+      });
   };
 
   return (
@@ -40,20 +56,19 @@ export default function Login() {
           <span className="login__title">login </span>
 
           <form action="#" className="login-form">
-            <div className="login-form__username">
+          <div className="login-form__password">
               <Input
-                className="login-form__username-input"
-                id="username"
                 type="text"
                 placeholder="email"
+                className="login-form__username-input"
                 element="input"
+                id="email"
+                onInputHandler={onInputHandler}
                 validations={[
                   requiredValidator(),
-                  minValidator(8),
-                  maxValidator(40),
+                  maxValidator(25),
                   emailValidator(),
                 ]}
-                onInputHandler={onInputHandler}
               />
             </div>
             <div className="login-form__password">
@@ -71,6 +86,11 @@ export default function Login() {
                 onInputHandler={onInputHandler}
               />
             </div>
+            <Link
+              className="login-form__forget-password-link"
+              to="/forgetpassword">
+              forget your password click here
+            </Link>
             <Button
               className={`login-form__btn ${
                 formState.isFormValid
@@ -92,9 +112,6 @@ export default function Login() {
               sing in
             </Link>
           </div>
-          <Link className="login__forget-password-link" to="/forgetpassword">
-            forget your password click here
-          </Link>
         </div>
       </section>
     </>

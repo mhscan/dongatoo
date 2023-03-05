@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 import Button from "../../Components/Form/Button";
 import Input from "../../Components/Form/Input";
 import { useForm } from "../../hooks/useForm";
@@ -12,17 +16,32 @@ import {
 
 import "./LoginRegister.css";
 
+import Athcontext from "../../Context/AthContext";
+
 export default function Register() {
+  const athcontext = useContext(Athcontext);
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "inherit",
+    color: "red",
+    p: 4,
+  };
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const [formState, onInputHandler] = useForm(
     {
       name: {
         value: "",
         isValid: false,
       },
-      username: {
-        value: "",
-        isValid: false,
-      },
+
       email: {
         value: "",
         isValid: false,
@@ -40,13 +59,12 @@ export default function Register() {
 
     const newUserInfos = {
       name: formState.inputs.name.value,
-      username: formState.inputs.username.value,
+
       email: formState.inputs.email.value,
       password: formState.inputs.password.value,
-      confirmPassword: formState.inputs.password.value,
     };
 
-    fetch(`http://localhost:4000/v1/auth/register`, {
+    fetch(`https://dongato-server.bavand.top/api/user/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,26 +73,30 @@ export default function Register() {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result.accessToken);
-      });
+        if (!result.status) {
+          handleOpen();
+        }
+        if (result.status) {
+          console.log("ok");
 
-    console.log("User Register");
+          athcontext.login(result.data.token);
+
+          console.log(athcontext);
+        }
+      });
   };
 
   return (
     <>
       <section className="login-register">
         <div className="login register-form">
-          
-
           <span className="login__title">sing in </span>
-          
 
           <form action="#" className="login-form">
             <div className="login-form__username">
               <Input
                 type="text"
-                placeholder="name family"
+                placeholder="name"
                 className="login-form__username-input"
                 element="input"
                 id="name"
@@ -86,21 +108,7 @@ export default function Register() {
                 ]}
               />
             </div>
-            <div className="login-form__username">
-              <Input
-                type="text"
-                placeholder="user name"
-                className="login-form__username-input"
-                element="input"
-                id="username"
-                onInputHandler={onInputHandler}
-                validations={[
-                  requiredValidator(),
-                  minValidator(8),
-                  maxValidator(20),
-                ]}
-              />
-            </div>
+
             <div className="login-form__password">
               <Input
                 type="text"
@@ -150,9 +158,21 @@ export default function Register() {
             </span>
             <Link className="login__new-member-link" to="/login">
               sing up{" "}
-             </Link>
+            </Link>
           </div>
         </div>
+
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description">
+          <Box sx={style}>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              email already is exit !!!
+            </Typography>
+          </Box>
+        </Modal>
       </section>
     </>
   );

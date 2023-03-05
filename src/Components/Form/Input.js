@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import React, { useEffect, useReducer } from "react";
 import validator from "../../validators/validator";
 
@@ -43,9 +44,12 @@ export default function Input(props) {
 
   const element =
     props.element === "input" ? (
-      <input
+      <TextField
+        id="standard-basic"
+        label={props.placeholder}
+        variant="standard"
         type={props.type}
-        placeholder={props.placeholder}
+        
         className={`${props.className} ${
           mainInput.isValid ? "success" : "error"
         }`}
