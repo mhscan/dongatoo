@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import Athcontext from "../../Context/AthContext";
 import { Link } from "react-router-dom";
 import Button from "../../Components/Form/Button";
 import Input from "../../Components/Form/Input";
 import { useForm } from "../../hooks/useForm";
+import { useNavigate } from "react-router-dom";
 
 import {
   requiredValidator,
@@ -14,6 +16,9 @@ import {
 import "./LoginRegister.css";
 
 export default function Login() {
+  const athcontext = useContext(Athcontext);
+  const navigate=useNavigate()
+
   const [formState, onInputHandler] = useForm(
     {
       email: {
@@ -45,7 +50,21 @@ export default function Login() {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result.status);
+        if (result.status) {
+          console.log("ok login page");
+
+          fetch(`https://dongato-server.bavand.top/api/user/me`, {
+            method: "GET",
+            headers: {
+              Authorization: result.data.token,
+            },
+          })
+            .then((data) => data.json())
+            .then((data) => {
+              athcontext.login(result.data.token, data.data);
+              navigate("/app")
+            });
+        }
       });
   };
 
@@ -56,7 +75,7 @@ export default function Login() {
           <span className="login__title">login </span>
 
           <form action="#" className="login-form">
-          <div className="login-form__password">
+            <div className="login-form__password">
               <Input
                 type="text"
                 placeholder="email"

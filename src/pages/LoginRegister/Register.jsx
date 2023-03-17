@@ -1,9 +1,5 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import Box from "@mui/material/Box";
-
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
 import Button from "../../Components/Form/Button";
 import Input from "../../Components/Form/Input";
 import { useForm } from "../../hooks/useForm";
@@ -17,23 +13,11 @@ import {
 import "./LoginRegister.css";
 
 import Athcontext from "../../Context/AthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const athcontext = useContext(Athcontext);
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "inherit",
-    color: "red",
-    p: 4,
-  };
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const navigate = useNavigate();
 
   const [formState, onInputHandler] = useForm(
     {
@@ -74,14 +58,22 @@ export default function Register() {
       .then((res) => res.json())
       .then((result) => {
         if (!result.status) {
-          handleOpen();
         }
         if (result.status) {
-          console.log("ok");
+          console.log("ok register page");
 
-          athcontext.login(result.data.token);
+          fetch(`https://dongato-server.bavand.top/api/user/me`, {
+            method: "GET",
+            headers: {
+              Authorization: result.data.token,
+            },
+          })
+            .then((data) => data.json())
+            .then((data) => {
+              athcontext.login(result.data.token, data.data);
 
-          console.log(athcontext);
+              navigate("/app");
+            });
         }
       });
   };
@@ -161,18 +153,6 @@ export default function Register() {
             </Link>
           </div>
         </div>
-
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description">
-          <Box sx={style}>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              email already is exit !!!
-            </Typography>
-          </Box>
-        </Modal>
       </section>
     </>
   );
