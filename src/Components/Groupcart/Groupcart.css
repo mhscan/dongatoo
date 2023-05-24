@@ -4,10 +4,12 @@
   height: 120px;
   border-bottom: 1px solid #89d6eb;
   align-items: center;
+  max-width: 500px;
  
 }
 
 .avatar{
-  margin: 12px;
+  margin: 10px;
+ 
 }
 

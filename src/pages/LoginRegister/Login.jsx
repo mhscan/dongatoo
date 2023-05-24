@@ -17,7 +17,7 @@ import "./LoginRegister.css";
 
 export default function Login() {
   const athcontext = useContext(Athcontext);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const [formState, onInputHandler] = useForm(
     {
@@ -51,8 +51,6 @@ export default function Login() {
       .then((res) => res.json())
       .then((result) => {
         if (result.status) {
-          console.log("ok login page");
-
           fetch(`https://dongato-server.bavand.top/api/user/me`, {
             method: "GET",
             headers: {
@@ -60,9 +58,9 @@ export default function Login() {
             },
           })
             .then((data) => data.json())
-            .then((data) => {
-              athcontext.login(result.data.token, data.data);
-              navigate("/app")
+            .then((userdata) => {
+              athcontext.login(result.data.token, userdata.data);
+              navigate("/app");
             });
         }
       });

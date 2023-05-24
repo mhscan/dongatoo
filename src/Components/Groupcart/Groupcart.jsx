@@ -3,7 +3,7 @@ import "./Groupcart.css";
 import { Avatar } from "@mui/material";
 
 
-export default function Groupcart({ name, member, img }) {
+export default function Groupcart({ name, img }) {
   
 
 
@@ -11,10 +11,10 @@ export default function Groupcart({ name, member, img }) {
     <>
       <div className="groupcart">
         
-        <Avatar className="avatar" src={img} alt={name}></Avatar>
+        <Avatar className="avatar" src={img} alt={name} sx={{ width: 40, height: 40 }}></Avatar>
 
         <div className="groupcart__info">
-          <h1>{name}</h1>
+          <p>{name}</p>
           
         </div>
       </div>

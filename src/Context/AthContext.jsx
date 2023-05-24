@@ -4,6 +4,8 @@ const Athcontext = createContext({
     isLogin: false,
     token: null,
     userinfo: null,
+    groupinfo:null,
+    groupinfofunc:()=>{},
     login: ()=>{},
     logout: ()=>{},
 });
